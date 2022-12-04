@@ -47,26 +47,32 @@ class AddressBook: Codable, Comparable, Equatable{
 //        AddressList.sort(by: {sort1, sort2 in return sort1 < sort2})
         }
         
-    func searchBySurname(card: AddressCard) -> AddressCard{
+    func searchBySurname(surname: String) -> AddressCard{
         for addressCard in AddressList {
-            if addressCard.Nachname == card.Nachname{
+            if addressCard.Nachname == surname{
                 return addressCard
             }
         }
     }
     
-    func searchByID(card: AddressCard) -> AddressCard{
+    func searchByID(id: UUID) -> AddressCard{
         for addressCard in AddressList {
-            if addressCard.id == card.id{
+            if addressCard.id == id{
                 return addressCard
             }
         }
     }
     
-//    func friendsOf(card: AddressCard) -> [AddressCard] {
-//
-//
-//    }
+    func friendsOf(card: AddressCard) -> [AddressCard] {
+        var freunde: Array<UUID> = card.Freunde
+        var freundeAddressCard: Array<AddressCard>
+        
+        for id in freunde{
+            var freund = searchByID(id: id)
+            freundeAddressCard.append(freund)
+        }
+        return freundeAddressCard
+    }
     
     func save(toFile path: String){
         let book = AddressBook()
