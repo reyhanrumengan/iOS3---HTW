@@ -64,11 +64,11 @@ class AddressBook: Codable, Comparable, Equatable{
     }
     
     func friendsOf(card: AddressCard) -> [AddressCard] {
-        var freunde: Array<UUID> = card.Freunde
+        let freunde: Array<UUID> = card.Freunde
         var freundeAddressCard: Array<AddressCard>
         
         for id in freunde{
-            var freund = searchByID(id: id)
+            let freund = searchByID(id: id)
             freundeAddressCard.append(freund)
         }
         return freundeAddressCard
@@ -88,8 +88,6 @@ class AddressBook: Codable, Comparable, Equatable{
     }
     
     class func addressBook(fromFile path: String) -> AddressBook?{
-        let book = AddressBook()
-        
         let url = URL(fileURLWithPath: path)
         
         if let data = try? Data(contentsOf: url) {
