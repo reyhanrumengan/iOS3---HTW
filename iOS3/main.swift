@@ -8,5 +8,9 @@
 import Foundation
 
 
+print("Bitte geben Sie einen Namen ein.")
+let name = readLine()
+
+
 
 

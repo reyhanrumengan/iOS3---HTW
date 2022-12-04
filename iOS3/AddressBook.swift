@@ -69,15 +69,30 @@ class AddressBook: Codable, Comparable, Equatable{
 //    }
     
     func save(toFile path: String){
+        let book = AddressBook()
+        
         let url = URL(fileURLWithPath: path)
+        
+        let encoder = JSONEncoder()
+        if let data = try? encoder.encode(book) {
+            try? data.write(to: url)
+        }
         
         
     }
     
-//    class func addressBook(fromFile path: String) -> AddressBook?{
-//
-//    }
-    
+    class func addressBook(fromFile path: String) -> AddressBook?{
+        let book = AddressBook()
+        
+        let url = URL(fileURLWithPath: path)
+        
+        if let data = try? Data(contentsOf: url) {
+            let decoder = JSONDecoder()
+            if let book = try? decoder.decode(AddressBook.self, from: data) {
+                return book
+            }
+        }
+    }
     
 }
 
