@@ -52,7 +52,6 @@ class AddressCard: Identifiable, Codable, Equatable, Hashable{
     }
 
     
-    
 }
 
 
